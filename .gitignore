@@ -1,0 +1,6 @@
+settings.py
+.env
+.idea
+__pycache__/
+*.png
+*.sqlite3
