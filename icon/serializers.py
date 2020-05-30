@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from rest_framework.validators import UniqueValidator
 
 from icon.models import Picture, Comment, Like
 
@@ -58,13 +57,16 @@ class PictureSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
 
     username = serializers.CharField(max_length=128)
-    password = serializers.CharField(max_length=128)
+    password = serializers.CharField(max_length=128, write_only=True)
+    email = serializers.EmailField(max_length=128)
 
     def create(self, validated_data):
-        user = User.objects.create_user(validated_data['username'], validated_data['password'])
+        user = User.objects.create_user(username=validated_data.get('username'),
+                                        email=validated_data.get('email'),
+                                        password=validated_data.get('password'))
         return user
 
     class Meta:
         model = User
-        fields = ('id', 'username', 'password')
+        fields = ('id', 'username', 'password', 'email')
 
