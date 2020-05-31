@@ -1,11 +1,11 @@
 from django.contrib.auth.models import User
-from rest_framework.generics import get_object_or_404, RetrieveUpdateDestroyAPIView, ListCreateAPIView, CreateAPIView, DestroyAPIView
+from rest_framework.generics import RetrieveUpdateDestroyAPIView, ListCreateAPIView, CreateAPIView, DestroyAPIView
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import Picture, Comment, Like
-from .serializers import PictureSerializer, UserSerializer, CommentSerializer, LikeSerializer
+from icon.models import Picture, Comment, Like
+from icon.api.serializers import PictureSerializer, UserSerializer, CommentSerializer, LikeSerializer
 from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
 from rest_framework import status
